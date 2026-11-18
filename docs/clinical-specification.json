@@ -1,0 +1,1690 @@
+[
+    {
+        "id": "background.age",
+        "domain": "background",
+        "intent": "Age in years; do not request legal identity",
+        "kind": "INTEGER",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": 0.0,
+        "max": 120.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "background.concern",
+        "domain": "background",
+        "intent": "Main fertility concern, reason for visit and personal goals",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "background.referral",
+        "domain": "background",
+        "intent": "Referral or previous specialist consultation",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "background.menses",
+        "domain": "background",
+        "intent": "Is menstrual history applicable to your own body?",
+        "kind": "BOOLEAN",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "background.partner",
+        "domain": "background",
+        "intent": "Is a partner contributing sperm, with relevant history you can share?",
+        "kind": "BOOLEAN",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "background.donor",
+        "domain": "background",
+        "intent": "Partner, donor or other reproductive contribution context; avoid assumptions",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.duration",
+        "domain": "fertility",
+        "intent": "Duration of trying to conceive, if applicable; use NOT_APPLICABLE if not trying",
+        "kind": "DECIMAL",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "months",
+            "years"
+        ],
+        "min": 0.0,
+        "max": 100.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.prior_attempts",
+        "domain": "fertility",
+        "intent": "Previous periods of trying and any prior conceptions",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.diagnoses",
+        "domain": "fertility",
+        "intent": "Previously reported fertility diagnoses and who made them; never infer a diagnosis",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.tracking",
+        "domain": "fertility",
+        "intent": "Ovulation tracking or timed attempts, if applicable",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.ivf_count",
+        "domain": "fertility",
+        "intent": "Total previous IVF cycles including cancelled cycles; avoid counting transfers as stimulation cycles",
+        "kind": "INTEGER",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": 0.0,
+        "max": 30.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.iui_count",
+        "domain": "fertility",
+        "intent": "Total previous IUI cycles including cancellations",
+        "kind": "INTEGER",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": 0.0,
+        "max": 30.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "fertility.other_treatment",
+        "domain": "fertility",
+        "intent": "Other previous fertility care and reported outcomes",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.menarche",
+        "domain": "menstrual",
+        "intent": "Age at first period",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.last_period",
+        "domain": "menstrual",
+        "intent": "First day of most recent period; preserve approximate or non-Gregorian dates as uncertain",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.pattern",
+        "domain": "menstrual",
+        "intent": "Typical cycle interval, variability, missed periods and any prolonged absence",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.bleeding",
+        "domain": "menstrual",
+        "intent": "Bleeding duration, heaviness and bleeding between periods",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.pain",
+        "domain": "menstrual",
+        "intent": "Period pain and its impact",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "menstrual.endocrine",
+        "domain": "menstrual",
+        "intent": "Any reported excess hair, milk discharge, thyroid symptoms or hot flushes",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "obstetric.count",
+        "domain": "obstetric",
+        "intent": "Number of previous pregnancies, if applicable, including losses",
+        "kind": "INTEGER",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": 0.0,
+        "max": 30.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "obstetric.postpartum",
+        "domain": "obstetric",
+        "intent": "Relevant postpartum health or breastfeeding, if applicable",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "gynecology.conditions",
+        "domain": "gynecology",
+        "intent": "Reported endometriosis, adenomyosis, fibroids, polyps, cysts or uterine differences",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "gynecology.infection",
+        "domain": "gynecology",
+        "intent": "Prior pelvic infections or sexually transmitted infections, if comfortable",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "gynecology.cervix",
+        "domain": "gynecology",
+        "intent": "Relevant cervical screening and procedures",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "gynecology.pain",
+        "domain": "gynecology",
+        "intent": "Persistent pelvic pain or pain with intercourse, if applicable",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "gynecology.contraception",
+        "domain": "gynecology",
+        "intent": "Previous contraception, timing of stopping and relevant difficulties",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": "background.menses",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medical.chronic",
+        "domain": "medical",
+        "intent": "Chronic illnesses including thyroid, diabetes, blood pressure, autoimmune or clotting conditions",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medical.cancer",
+        "domain": "medical",
+        "intent": "History of cancer, chemotherapy, radiation or other fertility-affecting exposure",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medical.mental_health",
+        "domain": "medical",
+        "intent": "Relevant mental health history, if comfortable",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medical.hospital",
+        "domain": "medical",
+        "intent": "Relevant hospital admissions",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medical.surgery",
+        "domain": "medical",
+        "intent": "Abdominal, pelvic, ovarian, tubal, uterine or other surgery; dates and complications when known",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medication.current",
+        "domain": "medication",
+        "intent": "Current prescriptions, over-the-counter drugs, hormones and supplements; dose and timing only if supplied",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "medication.allergies",
+        "domain": "medication",
+        "intent": "Known allergies and reactions; distinguish no known allergies from unknown",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "family.history",
+        "domain": "family",
+        "intent": "Relevant inherited conditions, infertility, early menopause, losses, birth differences or familial cancers",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "family.genetics",
+        "domain": "family",
+        "intent": "Known carrier status, previous genetic counseling or tests; consanguinity only if relevant",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ACOG2019",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.nicotine",
+        "domain": "lifestyle",
+        "intent": "Smoking, vaping or passive smoke exposure",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.alcohol",
+        "domain": "lifestyle",
+        "intent": "Alcohol and recreational substances, without judgment",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.habits",
+        "domain": "lifestyle",
+        "intent": "Nutrition, physical activity, sleep and major weight changes",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.exposure",
+        "domain": "lifestyle",
+        "intent": "Workplace or environmental exposures",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.stress",
+        "domain": "lifestyle",
+        "intent": "Emotional impact and available support",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "lifestyle.barriers",
+        "domain": "lifestyle",
+        "intent": "Practical or financial barriers and communication preferences",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "sexual.history",
+        "domain": "sexual",
+        "intent": "If relevant and comfortable: timing or frequency of intercourse, pain or sexual difficulties",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "sexual.safety",
+        "domain": "sexual",
+        "intent": "Optional: any safety, trauma or reproductive coercion concerns you wish the clinician to know",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ACOG2019"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.fertility",
+        "domain": "partner",
+        "intent": "Contributor reproductive history and previous pregnancies; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.urologic",
+        "domain": "partner",
+        "intent": "Contributor testicular or urologic conditions, infections and surgery; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.medical",
+        "domain": "partner",
+        "intent": "Contributor medical, surgical and family history; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.medication",
+        "domain": "partner",
+        "intent": "Contributor medication, testosterone or anabolic steroid use; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.sexual",
+        "domain": "partner",
+        "intent": "Relevant erectile or ejaculatory difficulties; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "partner.lifestyle",
+        "domain": "partner",
+        "intent": "Contributor lifestyle and occupational exposures; mark all as secondhand",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": "background.partner",
+        "expected": "true",
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "AUA2024"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.available",
+        "domain": "tests",
+        "intent": "Which fertility investigation results do you already have? No new tests are requested",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.amh",
+        "domain": "tests",
+        "intent": "Existing amh result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "ng/mL",
+            "pmol/L"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.afc",
+        "domain": "tests",
+        "intent": "Existing afc result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "count"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.fsh",
+        "domain": "tests",
+        "intent": "Existing fsh result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "IU/L",
+            "mIU/mL"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.lh",
+        "domain": "tests",
+        "intent": "Existing lh result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "IU/L",
+            "mIU/mL"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.estradiol",
+        "domain": "tests",
+        "intent": "Existing estradiol result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "pg/mL",
+            "pmol/L"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.tsh",
+        "domain": "tests",
+        "intent": "Existing tsh result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "mIU/L"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.prolactin",
+        "domain": "tests",
+        "intent": "Existing prolactin result ONLY if available; value, original unit, date and source. Unknown is valid; no interpretation",
+        "kind": "DECIMAL",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [
+            "ng/mL",
+            "mIU/L"
+        ],
+        "min": 0.0,
+        "max": 100000.0,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.ultrasound",
+        "domain": "tests",
+        "intent": "Existing pelvic ultrasound or uterine cavity findings",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023",
+            "AUA2024",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.tubes",
+        "domain": "tests",
+        "intent": "Existing tubal assessment such as HSG or HyCoSy, date and clinician-reported findings",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023",
+            "AUA2024",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.semen",
+        "domain": "tests",
+        "intent": "Existing semen analysis: date, laboratory, volume, concentration, motility and morphology with original units",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023",
+            "AUA2024",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "tests.screening",
+        "domain": "tests",
+        "intent": "Already completed relevant infection, genetic or metabolic screening",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023",
+            "AUA2024",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "symptoms.current",
+        "domain": "symptoms",
+        "intent": "Any current symptoms or concerns, including recent treatment complications",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "goals.questions",
+        "domain": "goals",
+        "intent": "Questions or priorities to take to the fertility specialist",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.plan",
+        "domain": "ivf",
+        "intent": "Reason for IVF as explained by clinician, existing IVF/ICSI plans, preservation or donor context; no treatment selection",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": "IVF",
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.risks",
+        "domain": "ivf",
+        "intent": "Previous ovarian response, reported OHSS or other complications and prior counseling",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": "IVF",
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update",
+            "RCOG_OHSS"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.date",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Approximate date and clinic",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.protocol",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Reported stimulation protocol, medications and duration",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.response",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Follicular response and monitoring, if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.retrieval",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Retrieval date, retrieved and mature egg counts, if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.fertilization",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: IVF or ICSI and fertilization results",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.embryos",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Development, blastocysts and grading, if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.pgt",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: PGT performed and patient-reported results, if any",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.transfer",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Fresh or frozen transfer, date and embryo count",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.outcome",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Pregnancy outcome or cancellation and clinician-reported reason",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.storage",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Embryos or gametes remaining in storage",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "ivf.cycle.1.complications",
+        "domain": "ivf_cycles",
+        "intent": "ivf cycle 1: Complications, OHSS, hospitalization or other concerns",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_OS2025_2026update"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.date",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Approximate date and clinic",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.stimulation",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Natural or stimulated cycle; medications if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.monitoring",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Monitoring and follicle results if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.trigger",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Trigger medication and timing if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.insemination",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Insemination timing and sperm source",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.sperm",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Preparation and pre/post-wash parameters with units if known",
+        "kind": "TEXT",
+        "required": false,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.outcome",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Pregnancy outcome or cancellation; clinician-reported reason",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.cycle.1.complications",
+        "domain": "iui_cycles",
+        "intent": "iui cycle 1: Any complications or concerns",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "obstetric.pregnancy.1.date",
+        "domain": "obstetric",
+        "intent": "Pregnancy 1: Approximate pregnancy date, gestational age and conception context",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "obstetric.pregnancy.1.outcome",
+        "domain": "obstetric",
+        "intent": "Pregnancy 1: Live birth, loss, ectopic, termination or other outcome, using patient's terms",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "obstetric.pregnancy.1.complications",
+        "domain": "obstetric",
+        "intent": "Pregnancy 1: Complications, investigations, delivery method and postpartum issues if relevant",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": true,
+        "pathway": null,
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ASRM2026",
+            "WHO2025"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.plan",
+        "domain": "iui",
+        "intent": "Reason for IUI as explained by clinician, sperm source and existing plan",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": "IUI",
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    },
+    {
+        "id": "iui.assessment",
+        "domain": "iui",
+        "intent": "Already documented ovulation, uterine, tubal and semen assessment; reported contraindications, no eligibility decision",
+        "kind": "TEXT",
+        "required": true,
+        "sensitive": false,
+        "pathway": "IUI",
+        "dependsOn": null,
+        "expected": null,
+        "units": [],
+        "min": null,
+        "max": null,
+        "sources": [
+            "ESHRE_UI2023"
+        ],
+        "followUp": "Clarify ambiguity, date and units only if known; allow unknown or skip."
+    }
+]

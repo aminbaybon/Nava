@@ -1,0 +1,133 @@
+{
+  "executed_on": "2026-11-18",
+  "suites": [
+    {
+      "module": "domain",
+      "suite": "com.aminfathi.nava.domain.EngineTest",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.154,
+      "cases": [
+        {
+          "name": "independentPatientsHaveIndependentFacts()",
+          "seconds": 0.075
+        },
+        {
+          "name": "stableSpecificationHasUniqueIdsAndSources()",
+          "seconds": 0.009
+        },
+        {
+          "name": "skippedSensitiveFieldsAreNotRepeated()",
+          "seconds": 0.002
+        },
+        {
+          "name": "previousIVFBranchesForEachCycle()",
+          "seconds": 0.002
+        },
+        {
+          "name": "doseAdviceIsRejected()",
+          "seconds": 0.002
+        },
+        {
+          "name": "doseAdviceIsBlockedAcrossScripts()",
+          "seconds": 0.001
+        },
+        {
+          "name": "processDeathRoundTripPreservesPendingMessageAndProvenance()",
+          "seconds": 0.022
+        },
+        {
+          "name": "unknownAndNegativeAreDistinct()",
+          "seconds": 0.001
+        },
+        {
+          "name": "switchingPathwayPreservesOldCycles()",
+          "seconds": 0.002
+        },
+        {
+          "name": "partnerFactsAreAlwaysSecondhand()",
+          "seconds": 0.001
+        },
+        {
+          "name": "unknownAMHIsNeverNormal()",
+          "seconds": 0.01
+        },
+        {
+          "name": "duplicateExtractionDoesNotAppendFacts()",
+          "seconds": 0.001
+        },
+        {
+          "name": "iuiAndPregnancyRepeatersAreIndependent()",
+          "seconds": 0.004
+        },
+        {
+          "name": "nonFiniteAndFractionalCountsFail()",
+          "seconds": 0.001
+        },
+        {
+          "name": "noAutonomousCompleteness()",
+          "seconds": 0.001
+        },
+        {
+          "name": "conditionalQuestionsWaitForApplicability()",
+          "seconds": 0.002
+        },
+        {
+          "name": "rejectsUnsupportedFactsAndInventedEvidence()",
+          "seconds": 0.001
+        },
+        {
+          "name": "numericUnitsAndRangesRequireClarification()",
+          "seconds": 0.0
+        },
+        {
+          "name": "preservesCorrectionHistoryUntilPatientResolves()",
+          "seconds": 0.001
+        },
+        {
+          "name": "datesAreNotGuessed()",
+          "seconds": 0.002
+        },
+        {
+          "name": "urgentPhrasesWorkAcrossScripts()",
+          "seconds": 0.001
+        }
+      ]
+    },
+    {
+      "module": "verification",
+      "suite": "com.aminfathi.nava.OpenAIProviderTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.556,
+      "cases": [
+        {
+          "name": "streamRequiresCompletionEvent",
+          "seconds": 0.52
+        },
+        {
+          "name": "authorizationRunsBeforeNetwork",
+          "seconds": 0.008
+        },
+        {
+          "name": "authenticationErrorDoesNotLeakResponseBody",
+          "seconds": 0.003
+        },
+        {
+          "name": "storageIsDisabledAndNoProviderConversationIsCreated",
+          "seconds": 0.005
+        },
+        {
+          "name": "streamCombinesMultilingualDeltas",
+          "seconds": 0.015
+        },
+        {
+          "name": "modelDiscoveryDoesNotTransmitPatientData",
+          "seconds": 0.003
+        }
+      ]
+    }
+  ]
+}

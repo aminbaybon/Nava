@@ -1,0 +1,2 @@
+-keep class net.zetetic.database.sqlcipher.** { *; }
+-keepattributes Signature,InnerClasses,EnclosingMethod
