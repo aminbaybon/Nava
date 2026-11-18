@@ -9,7 +9,7 @@ This is an engineering threat model using [OWASP MASVS](https://mas.owasp.org/MA
 | Backup or device migration leakage | allowBackup=false, fullBackupContent=false, cloud/device-transfer exclusions | Test on target OEM devices and supported OS versions; do not assume flags are a full forensic guarantee. |
 | Screenshots / recents | FLAG_SECURE on the activity | Does not stop physical cameras or a compromised operating system. |
 | Unattended app | Optional BiometricPrompt/device credential gate, background lock and two-minute inactivity lock | UI gate is not cryptographic per-operation auth. Initial record load occurs behind the gate. Test Android 26–36 device behavior. |
-| Network interception | Official HTTPS API, default TLS/hostname verification, system trust anchors only, redirects off, no cleartext, bounded timeouts | No certificate pinning; system trust and endpoint remain trust dependencies. Build-environment proxy settings are not included in app transport. |
+| Network interception | Official OpenAI calls use HTTPS, default TLS and system trust anchors. The care service must be HTTPS except loopback (`localhost`, `127.0.0.1`, `10.0.2.2`), which may use HTTP only for a local development server. | No certificate pinning. A local cleartext exception must not be reused for a public host. |
 | Prompt injection | Fixed system responsibilities, JSON schema, allowlisted field IDs, source-quote checks, deterministic coverage and no model tools | This does not prove model correctness or fully prevent misleading model output. |
 | Wrong patient commit | Captured profile/session/revision, transaction compare-and-set, serialized turns, explicit export/report association | One device owner can access every local profile; there is no multi-user clinical ACL. |
 | Accidental background transmission | No background worker; stop cancels active network; consent checked per attempt and commit | Data already transmitted before revoke/cancel cannot be recalled. |
@@ -27,6 +27,8 @@ Consent version `2026-11-18.1` and acceptance time are stored in the patient's e
 ## Before any healthcare deployment
 
 Obtain jurisdiction-specific privacy and medical-software classification review; determine the controller/processor roles, applicable agreements, lawful processing basis, age/consent policy and intended clinical use. Validate translations and safety behavior with clinicians and representative patients. Perform independent penetration testing, dependency/SBOM review, native-library 16 KB page compatibility verification, device auth/backup tests, accessibility testing and release-signing/key management. These are release conditions, not claimed completed certifications.
+
+Shared hospital inquiries, quotations and coordinator messages use a separate service. The private interview is not uploaded by default. See [medical tourism architecture](TOURISM.md) for retention, roles and the demonstration-data boundary. That document is not a regulatory determination.
 
 ## Dependency and migration posture
 

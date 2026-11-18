@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <h1>Approximate rates</h1>
+  <p class="muted">{{ rates.source }} · {{ rates.asOf }}. Conversions that use this table must be shown as approximate.</p>
+  <pre>{{ rates | tojson(indent=2) }}</pre>
+  {% if user.role == "PLATFORM_ADMIN" %}
+  <form method="post">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Source <input name="source" required></label>
+    <label>As of <input name="as_of" required></label>
+    <label>Units per 1 USD, JSON object <textarea name="table" rows="4">{{ rates.perUsd | tojson }}</textarea></label>
+    <button type="submit">Save rates</button>
+  </form>
+  {% endif %}
+</section>
+{% endblock %}

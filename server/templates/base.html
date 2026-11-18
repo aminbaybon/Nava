@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nava provider portal</title>
+  <link rel="stylesheet" href="/static/portal.css">
+</head>
+<body>
+<header>
+  <div>
+    <strong>NAVA</strong>
+    <div class="muted">Provider portal</div>
+  </div>
+  {% if user is defined %}
+  <nav>
+    <a href="/portal">Inquiries</a>
+    <a href="/portal/hospitals">Hospitals</a>
+    <a href="/portal/doctors">Doctors</a>
+    <a href="/portal/stays">Accommodation</a>
+    <a href="/portal/rates">Rates</a>
+    <form method="post" action="/portal/logout"><button type="submit">Sign out</button></form>
+  </nav>
+  {% endif %}
+</header>
+<main>
+  {% if banner is defined %}<p class="banner">{{ banner }}</p>{% endif %}
+  {% block body %}{% endblock %}
+</main>
+</body>
+</html>

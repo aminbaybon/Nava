@@ -63,3 +63,7 @@ Reports are deterministic local snapshots. They show actual status and reviewed/
 PDF uses Android StaticLayout for text shaping and line-aware pagination. Export writes straight to the selected document provider. Explicit sharing uses that URI and a temporary read grant; there is no broad exported file provider or plaintext app cache.
 
 Direct AndroidX SQLite access is used with SQLCipher instead of Room-generated adapters. The data model consists of one strongly typed versioned aggregate per profile; a small parameterized SQL layer makes transactions and optimistic revisions explicit and removes the annotation-processor dependency. UI/network callers never execute SQL directly.
+
+## Medical tourism extension
+
+Private history, consent and the clinical interview stay in the encrypted on-device aggregate. Travel preferences, document findings and drafts are additive fields on that same aggregate, so older records still open. A hospital sees data only after the patient authorizes a specific request. That shared copy lives in the care service described in [TOURISM.md](TOURISM.md). Matching, request transitions and quotation comparison are deterministic. The concierge answers from those rules and the directory; it does not replace the interview orchestrator and it does not call a model for every turn.

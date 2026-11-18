@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <h1>Listing</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post" action="/portal/listings/{{ kind }}">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Record JSON
+      <textarea name="payload" rows="18">{{ payload | tojson }}</textarea>
+    </label>
+    <button type="submit">Save listing</button>
+  </form>
+</section>
+{% endblock %}

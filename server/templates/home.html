@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <h1>Shared inquiries</h1>
+  <p class="muted">Signed in as {{ user.display_name }} · {{ user.role }}{% if user.hospital_id %} · {{ user.hospital_id }}{% endif %}</p>
+  <p class="muted">You only see information a patient explicitly authorized for a hospital. The private interview stays on the patient's device.</p>
+  {% for item in requests %}
+  <p><a href="/portal/requests/{{ item.id }}">{{ item.pathway }} · {{ item.status }} · {{ item.updated_at }}</a></p>
+  {% else %}
+  <p>No shared inquiries yet.</p>
+  {% endfor %}
+</section>
+{% endblock %}

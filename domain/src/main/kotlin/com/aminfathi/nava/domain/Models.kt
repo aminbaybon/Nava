@@ -33,6 +33,11 @@ fun now(): String = Instant.now().toString()
     val stage: String = "preparing", val consent: Consent? = null, val facts: List<Fact> = emptyList(),
     val sessions: List<Session> = listOf(Session()), val reports: List<ReportSnapshot> = emptyList(),
     val attachments: List<Attachment> = emptyList(), val packets: List<ReportSnapshot> = emptyList(),
+    val journey: JourneyProfile = JourneyProfile(), val findings: List<ClinicalFinding> = emptyList(),
+    val careSummary: CareSummary? = null, val savedHospitals: List<String> = emptyList(),
+    val savedDoctors: List<String> = emptyList(), val careRequests: List<CareRequest> = emptyList(),
+    val trip: TripPlan = TripPlan(), val notices: List<CareNotice> = emptyList(),
+    val conciergeLog: List<Message> = emptyList(),
     val schemaVersion: Int = 1, val revision: Long = 0
 ) {
     val session: Session get() = sessions.last()

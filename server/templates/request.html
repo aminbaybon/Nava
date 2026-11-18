@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <h1>{{ item.pathway }} inquiry</h1>
+  <p>Status: <strong>{{ item.status }}</strong></p>
+  <p class="muted">Hospital {{ item.hospitalId }} · doctor {{ item.doctorId or "not chosen" }}</p>
+  <p>{{ item.note }}</p>
+  <h2>Shared summary</h2>
+  <pre>{{ summary | tojson(indent=2) }}</pre>
+  <h2>Files the patient authorized</h2>
+  {% for file in files %}
+  <p><a href="/api/files/{{ file.id }}">{{ file.name }}</a></p>
+  {% else %}<p class="muted">No file has been uploaded for this inquiry.</p>{% endfor %}
+  <h2>Messages</h2>
+  {% for message in item.messages %}
+  <p><strong>{{ message.actor }}</strong> · {{ message.sender }}<br>{{ message.body }}</p>
+  {% endfor %}
+  <form method="post" action="/portal/requests/{{ item.id }}/message">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Reply <textarea name="body" rows="4"></textarea></label>
+    <button type="submit">Send as {{ user.role }}</button>
+  </form>
+  {% if user.role in ["COORDINATOR", "HOSPITAL_ADMIN", "PLATFORM_ADMIN"] %}
+  <h2>Status</h2>
+  <form method="post" action="/portal/requests/{{ item.id }}/status">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Action
+      <select name="action">
+        <option>START_REVIEW</option>
+        <option>NEED_INFO</option>
+        <option>CANCEL</option>
+      </select>
+    </label>
+    <button type="submit">Update status</button>
+  </form>
+  <h2>Treatment estimate</h2>
+  <p class="muted">Enter one line per row: description | amount | optional. Leave off the last column when the line is included. The total is calculated. This remains an estimate until a clinician confirms it.</p>
+  <form method="post" action="/portal/requests/{{ item.id }}/quote">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Treatment <input name="treatment" required></label>
+    <label>Currency <input name="currency" value="USD"></label>
+    <label>Valid through <input name="expires" placeholder="2026-12-31" required></label>
+    <label>Lines <textarea name="lines" rows="5" placeholder="Consultation | 150&#10;Estimated IVF package | 4500&#10;Embryo freezing | 400 | optional"></textarea></label>
+    <label>Exclusions <textarea name="exclusions" rows="3" placeholder="Medication&#10;Travel"></textarea></label>
+    <label>What this estimate does not decide <textarea name="qualifications" rows="3"></textarea></label>
+    <label>Payment terms <textarea name="payment" rows="2"></textarea></label>
+    <label>More information needed <textarea name="extra" rows="2"></textarea></label>
+    <button type="submit">Issue estimate</button>
+  </form>
+  {% endif %}
+  <h2>Estimates already issued</h2>
+  {% for quote in item.quotations %}
+  <article>
+    <p>{{ quote.treatment }} · {{ quote.total }} {{ quote.currency }} · until {{ quote.expiresOn }}</p>
+    <p class="muted">{% if quote.demonstration %}Demonstration or unverified until a provider replaces it.{% endif %} Not a final bill.</p>
+    <ul>{% for line in quote.lines %}<li>{{ line.description }} · {{ line.amount }} {% if not line.included %}(not included){% endif %}</li>{% endfor %}</ul>
+    <p>Excluded: {{ quote.exclusions | join(", ") }}</p>
+  </article>
+  {% else %}<p class="muted">No estimate yet.</p>{% endfor %}
+</section>
+{% endblock %}

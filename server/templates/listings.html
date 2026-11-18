@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <h1>{{ title }}</h1>
+  <p class="muted">Records marked demonstration are fictional. Replace them through this form when a real provider agreement exists. Do not clear the demonstration flag unless the text is verified.</p>
+  {% if user.role in ["PLATFORM_ADMIN", "HOSPITAL_ADMIN"] %}
+  <p><a class="button" href="/portal/listings/{{ kind }}/new">Add {{ title }}</a></p>
+  {% endif %}
+  {% for row in rows %}
+  <article>
+    <h2>{{ row.name }}</h2>
+    <p class="muted">{% if row.demonstration %}Demonstration listing.{% else %}Marked verified by an administrator.{% endif %}
+      {% if row.city %} {{ row.city }}, {{ row.country }}.{% endif %}</p>
+    {% if user.role in ["PLATFORM_ADMIN", "HOSPITAL_ADMIN"] %}<p><a href="/portal/listings/{{ kind }}/{{ row.id }}">Edit</a></p>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

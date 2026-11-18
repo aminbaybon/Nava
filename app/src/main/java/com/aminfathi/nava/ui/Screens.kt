@@ -33,7 +33,7 @@ import androidx.navigation.compose.*
 import com.aminfathi.nava.domain.*
 import java.text.NumberFormat
 
-@Composable private fun tr(key:String)=LocalLocalized.current.label(key)
+@Composable internal fun tr(key:String)=LocalLocalized.current.label(key)
 @Composable fun NavaApp(vm:AppViewModel,locked:Boolean,unlock:()->Unit,setLock:(Boolean)->Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val base=LocalContext.current
@@ -93,24 +93,44 @@ private data class Tab(val key:String,val icon:ImageVector)
     val tabs=listOf(Tab("home",Icons.Outlined.Home),Tab("interview",Icons.Outlined.Forum),Tab("record",Icons.Outlined.Description),Tab("settings",Icons.Outlined.Tune))
     val entry by nav.currentBackStackEntryAsState()
     val route=entry?.destination?.route ?: "home"
+    val tabRoutes=tabs.map{it.key}.toSet()
     Scaffold(containerColor=MaterialTheme.colorScheme.background,
         topBar={TopAppBar(title={Brand()},actions={IconButton(onClick={vm.showUrgent(true)}){Icon(Icons.Outlined.HealthAndSafety,tr("symptom_help"))};Icon(Icons.Outlined.Lock,tr("privacy_local"),Modifier.padding(14.dp).size(19.dp),tint=MaterialTheme.colorScheme.primary)},colors=TopAppBarDefaults.topAppBarColors(containerColor=MaterialTheme.colorScheme.background))},
         bottomBar={NavigationBar(containerColor=MaterialTheme.colorScheme.surface) { tabs.forEach { tab ->
-            NavigationBarItem(selected=route==tab.key,onClick={nav.navigate(tab.key) { popUpTo("home") { saveState=true };launchSingleTop=true;restoreState=true }},icon={Icon(tab.icon,tr(tab.key))},label={Text(tr(tab.key),maxLines=2)})
+            NavigationBarItem(selected=route==tab.key || (tab.key=="home" && route !in tabRoutes),onClick={nav.navigate(tab.key) { popUpTo("home") { saveState=true };launchSingleTop=true;restoreState=true }},icon={Icon(tab.icon,tr(tab.key))},label={Text(tr(tab.key),maxLines=2)})
         } }}) { padding ->
         Column(Modifier.fillMaxSize().padding(padding)) {
             s.error?.let { key -> Surface(color=MaterialTheme.colorScheme.errorContainer,onClick=vm::clearError,modifier=Modifier.fillMaxWidth()) { Text(tr(key),Modifier.padding(16.dp),color=MaterialTheme.colorScheme.onErrorContainer) } }
             NavHost(navController=nav,startDestination="home",modifier=Modifier.weight(1f)) {
-                composable("home") { Overview(vm,s) { nav.navigate(it) } }
+                composable("home") { JourneyDashboard(vm,s) { nav.navigate(it) } }
+                composable("clinical") { Overview(vm,s) { nav.navigate(it) } }
                 composable("interview") { Interview(vm,s) { nav.navigate(it) } }
                 composable("record") { Record(vm,s) }
                 composable("settings") { Settings(vm,s,setLock) }
+                composable("documents") { DocumentsScreen(vm,s) { nav.navigate(it) } }
+                composable("findings") { FindingsScreen(vm,s) }
+                composable("hospitals") { HospitalsScreen(vm,s) { nav.navigate(it) } }
+                composable("hospital") { HospitalScreen(vm,s) { nav.navigate(it) } }
+                composable("doctors") { DoctorsScreen(vm,s) { nav.navigate(it) } }
+                composable("doctor") { DoctorScreen(vm,s) { nav.navigate(it) } }
+                composable("compareHospitals") { CompareHospitalsScreen(s) }
+                composable("request") { RequestScreen(vm,s) }
+                composable("requests") { RequestsScreen(vm,s) { nav.navigate(it) } }
+                composable("quotes") { QuotesScreen(vm,s) }
+                composable("compareQuotes") { CompareQuotesScreen(s) }
+                composable("messages") { MessagesScreen(vm,s) }
+                composable("stays") { StaysScreen(vm,s) { nav.navigate(it) } }
+                composable("stay") { StayScreen(s) }
+                composable("travel") { TravelScreen(vm,s) }
+                composable("budget") { BudgetScreen(vm,s) }
+                composable("concierge") { ConciergeScreen(vm,s) }
+                composable("notices") { NoticesScreen(vm,s) }
             }
         }
     }
     if(s.urgent) AlertDialog(onDismissRequest={vm.showUrgent(false)},icon={Icon(Icons.Outlined.HealthAndSafety,null)},title={Text(tr("urgent_title"))},text={Text(tr("urgent_body"))},confirmButton={TextButton(onClick={vm.showUrgent(false)}){Text(tr("continue_action"))}})
 }
-@Composable private fun Page(content:@Composable ColumnScope.()->Unit) {
+@Composable internal fun Page(content:@Composable ColumnScope.()->Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal=20.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(18.dp),content=content)
 }
 @Composable private fun Overview(vm:AppViewModel,s:AppState,navigate:(String)->Unit) {
@@ -285,6 +305,7 @@ private fun messageClock(iso:String)=runCatching {
                     if(item.ocr.isNotBlank()) Text(item.ocr,style=MaterialTheme.typography.bodySmall,maxLines=8)
                     Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                         TextButton(onClick={vm.readAttachment(item.id)},enabled=!s.busy) { Text(tr(if(item.ocr.isBlank()) "read_file" else "read_again")) }
+                        TextButton(onClick={vm.extractFindings(item.id)},enabled=!s.busy && item.ocr.isNotBlank()) { Text(tr("extract_findings")) }
                         TextButton(onClick={vm.removeAttachment(item.id)},enabled=!s.busy) { Text(tr("remove_file")) }
                     }
                 }
@@ -345,6 +366,9 @@ private fun messageClock(iso:String)=runCatching {
     var key by remember { mutableStateOf("") }
     var deletion by remember { mutableStateOf<String?>(null) }
     var modelMenu by remember { mutableStateOf(false) }
+    var server by remember(s.preferences.serverUrl) { mutableStateOf(s.preferences.serverUrl) }
+    var email by remember(s.preferences.portalEmail) { mutableStateOf(s.preferences.portalEmail) }
+    var password by remember { mutableStateOf("") }
     Page {
         Text(tr("settings"),style=MaterialTheme.typography.headlineLarge)
         Panel {
@@ -378,6 +402,19 @@ private fun messageClock(iso:String)=runCatching {
             Row(verticalAlignment=Alignment.CenterVertically){Text(tr("app_lock"),Modifier.weight(1f));Switch(checked=s.preferences.lock,onCheckedChange=setLock)}
         }
         Panel {
+            Text(tr("portal_title"),style=MaterialTheme.typography.titleLarge)
+            Text(tr("portal_hint"),style=MaterialTheme.typography.bodySmall)
+            OutlinedTextField(value=server,onValueChange={server=it},label={Text(tr("portal_url"))},singleLine=true,modifier=Modifier.fillMaxWidth())
+            OutlinedTextField(value=email,onValueChange={email=it},label={Text(tr("portal_email"))},singleLine=true,modifier=Modifier.fillMaxWidth())
+            OutlinedTextField(value=password,onValueChange={password=it},label={Text(tr("portal_password"))},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth())
+            Action(tr("save"),!s.busy){vm.saveServer(server,email)}
+            Action(tr("portal_sign_in"),password.length>=10 && !s.busy){vm.portalLogin(email,password,false);password=""}
+            OutlinedButton(onClick={vm.portalLogin(email,password,true);password=""},enabled=password.length>=10 && !s.busy,modifier=Modifier.fillMaxWidth()){Text(tr("portal_register"))}
+            if(s.portalRole.isNotBlank()) Text(tr("portal_connected")+" · "+s.portalRole)
+            if(s.directoryLive) Text(tr("directory_live"))
+            TextButton(onClick=vm::portalLogout,enabled=!s.busy){Text(tr("portal_out"))}
+        }
+        Panel {
             Text(tr("consent_title"),style=MaterialTheme.typography.titleLarge)
             Text(tr("consent_body"),style=MaterialTheme.typography.bodyMedium)
             if(s.patient?.consent!=null) OutlinedButton(onClick={vm.consent(false)},modifier=Modifier.fillMaxWidth()){Text(tr("revoke"))}
@@ -385,7 +422,7 @@ private fun messageClock(iso:String)=runCatching {
             TextButton(onClick={deletion="all"},enabled=s.patients.isNotEmpty() && !s.busy){Text(tr("delete_all"),color=MaterialTheme.colorScheme.error)}
         }
         Text(tr("medical_limit"),style=MaterialTheme.typography.bodySmall)
-        Text("Amin Fathi · Nava 0.1.0",style=MaterialTheme.typography.bodySmall)
+        Text("Amin Fathi · Nava 0.2.0",style=MaterialTheme.typography.bodySmall)
     }
     if(deletion!=null) DeleteDialog({deletion=null}) {if(deletion=="all") vm.deleteAll() else vm.deletePatient();deletion=null}
 }

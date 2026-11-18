@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application android:name=".NavaApplication" android:label="@string/app_name"
         android:theme="@style/Theme.Nava" android:icon="@drawable/ic_nava"
         android:allowBackup="false" android:fullBackupContent="false"

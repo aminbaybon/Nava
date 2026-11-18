@@ -17,7 +17,7 @@ manifest=(root/'app/src/main/AndroidManifest.xml').read_text()
 assert 'android:allowBackup="false"' in manifest
 assert 'android:usesCleartextTraffic="false"' in manifest
 assert '<provider' not in manifest # SAF export, no broad FileProvider
-src='\n'.join(p.read_text() for p in (root/'app/src/main/java').rglob('*.kt'))
+src='\n'.join(p.read_text(encoding='utf-8') for p in (root/'app/src/main/java').rglob('*.kt'))
 assert 'FLAG_SECURE' in src
 assert 'HttpLoggingInterceptor' not in src
 assert 'put("store",false)' in src

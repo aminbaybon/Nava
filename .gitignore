@@ -6,3 +6,10 @@ local.properties
 .env
 .idea/
 evaluation/results.local.json
+server/.venv/
+server/data/
+__pycache__/
+*.pyc
+.jdk/
+.android-sdk/
+.setup/

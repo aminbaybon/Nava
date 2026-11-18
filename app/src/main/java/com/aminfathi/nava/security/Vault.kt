@@ -58,4 +58,7 @@ class Vault(private val context: Context) {
     }
     fun apiKey(): String = get("api")?.toString(Charsets.UTF_8).orEmpty()
     fun saveApiKey(value: String) { require(value.length in 10..1000 && !value.contains('\n')); put("api",value.trim().toByteArray()) }
+    fun portalToken(): String = get("portal")?.toString(Charsets.UTF_8).orEmpty()
+    fun savePortalToken(value: String) { put("portal", value.toByteArray(Charsets.UTF_8)) }
+    fun clearPortalToken() { remove("portal") }
 }

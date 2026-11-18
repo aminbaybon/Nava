@@ -4,6 +4,8 @@
 
 **Source-only delivery:** 27 JVM tests passed. The full Compose build was blocked by an unavailable compiler dependency; no APK is included. See the exact build blocker in [validation](docs/VALIDATION.md).
 
+The same app now includes a medical-tourism journey: documents, hospital and doctor discovery, treatment requests, estimates, accommodation and a travel checklist. Shared inquiries go through the care service in `server/`. Demonstration listings are fictional. Details, local accounts and privacy limits are in [docs/TOURISM.md](docs/TOURISM.md).
+
 ## راه‌اندازی سریع
 
 1. پروژه را در Android Studio باز کنید و طبق بخش Build بسازید. در این بسته APK وجود ندارد؛ دریافت کامپایلر Compose در محیط ساخت مسدود شد. خروجی ساخته‌شده روی اندروید ۸ یا بالاتر نصب می‌شود.
